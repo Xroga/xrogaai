@@ -729,7 +729,7 @@
 </head>
 <body class="bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-950 text-gray-900 dark:text-gray-100 antialiased">
     <!-- Main Container with glass effect -->
-    <div class="flex h-screen overflow-hidden glass-panel m-4 rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30">
+    
         <!-- Sidebar Overlay -->
         <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 lg:hidden hidden"></div>
         
@@ -741,7 +741,11 @@
     <div class="relative logo-glow">
         <img src="https://i.postimg.cc/TPjDXhy8/Green-Minimalist-Summer-Big-Sale-Medium-Banner-7-removebg-preview.png" alt="Xroga AI" class="h-20 w-40">
     </div>
-        </div>
+                        
+                    
+                </div>
+                
+
                 
                 <!-- New Chat Button -->
                 <button id="new-chat" class="w-full gradient-btn py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl active:scale-[0.98]">
@@ -851,7 +855,7 @@
     <div class="space-y-3 max-h-[400px] overflow-y-auto pr-1 custom-scrollbar" id="tasks-container"></div>
 </div>
                 <!-- Theme Toggle (unchanged) -->
-                <button id="theme-toggle" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/30 dark:hover:bg-gray-700/50 transition-all duration-200 active:scale-[0.98]">
+                <button id="" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/30 dark:hover:bg-gray-700/50 transition-all duration-200 active:scale-[0.98]">
                     <div class="flex items-center gap-3">
                         <div class="p-2 bg-white/30 dark:bg-gray-700/50 rounded-lg">
                             <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
@@ -900,11 +904,11 @@
         
         <!-- Main Content -->
         <main id="main-content" class="flex-1 flex flex-col h-full overflow-hidden">
- <!-- Mobile Header -->
+<!-- Mobile Header -->
 <header class="lg:hidden p-4 border-b border-white/30 dark:border-gray-700/30 bg-white/30 dark:bg-gray-800/50 backdrop-blur-lg">
-    <div class="flex items-center justify-between">   
+    <div class="flex items-center justify-between">
         <button id="mobile-menu-btn" class="p-2 rounded-xl hover:bg-white/30 dark:hover:bg-gray-700/50 transition-colors">
-            <i data-lucide="panel-right-open" class="w-5 h-5"></i>
+            <i data-lucide="menu" class="w-5 h-5"></i>
         </button>
         <div class="flex items-center gap-2">
             <div class="w-30 h-20 rounded-lg overflow-hidden">
@@ -917,8 +921,6 @@
         </button>
     </div>
 </header>
-
-
 
 <!-- ✅ DESKTOP TOGGLE – now always visible -->
 <div id="desktop-toggle-container" class="hidden lg:block absolute top-10 left-30 z-[100]">
@@ -1336,195 +1338,598 @@
 </div>
 </div>
             
-<!-- Input Area with Glass Vibe + Row-by-Row Expand + Toggle Cap (Minimize/Expand) -->
-<div class="border-t border-white/20 dark:border-gray-700/40 bg-white/10 dark:bg-gray-900/20 backdrop-blur-xl p-4">
-    <div class="max-w-4xl mx-auto">
-        <!-- Glass Card Container -->
-        <div class="glass-card rounded-2xl p-2 shadow-2xl border border-white/20 dark:border-gray-700/30">
-            <div class="flex items-start relative">
-                <!-- Left Controls -->
-                <div class="flex items-center gap-1 pl-2 pt-2">
-                    <button id="voice-btn" class="p-2.5 rounded-xl hover:bg-white/20 dark:hover:bg-gray-700/30 transition-all duration-200 relative" title="Voice Input">
-                        <i data-lucide="mic" class="w-5 h-5"></i>
-                        <div id="voice-indicator" class="hidden absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-                    </button>
-                    <button id="voice-output-btn" class="p-2.5 rounded-xl hover:bg-white/20 dark:hover:bg-gray-700/30 transition-all duration-200" title="Speak last response">
-                        <i data-lucide="volume-2" class="w-5 h-5"></i>
-                    </button>
-                </div>
-                
-                <!-- Input Field with toggle button -->
-                <div class="flex-1 mx-2 relative">
-                    <textarea 
-                        id="chat-input"
-                        rows="1"
-                        placeholder="Build Xroga AI..." 
-                        class="w-full bg-transparent border-none focus:outline-none resize-none py-3 text-base placeholder-gray-400 dark:placeholder-gray-500 pr-12"
-                        style="height: 48px; min-height: 48px; line-height: 24px;"
-                    ></textarea>
-                    
-                    <!-- Toggle button (minimize/expand) -->
-                    <button id="toggle-cap-btn" class="hidden absolute top-2 right-2 p-1.5 rounded-lg bg-white/10 dark:bg-gray-800/40 backdrop-blur-sm hover:bg-white/30 dark:hover:bg-gray-700/50 transition-all duration-200 border border-white/20 dark:border-gray-600/30" title="Cap at 6 rows">
-                        <i data-lucide="minimize-2" class="w-4 h-4"></i>
-                    </button>
-                </div>
-                
-                <!-- Send Button -->
-                <div class="flex items-center gap-1 pr-2 pt-1">
-                    <button id="send-btn" class="modern-send-btn group relative overflow-hidden rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl active:scale-[0.95] flex items-center gap-2 px-4 py-3">
-                        <span class="shine-overlay absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></span>
-                        <i data-lucide="send" class="w-5 h-5 relative z-10"></i>
-                        <span class="font-medium relative z-10 mobile-hidden">Send</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Footnote -->
-        <kbd class="px-2 py-1 mt-2 inline-block bg-white/5 dark:bg-black/10 backdrop-blur-sm rounded text-xs border border-white/10 dark:border-gray-700/30">
-            Xroga may mistake. No one perfect except ALLAH.
-        </kbd>
-    </div>
-</div>
-
+<!-- XROGA AI · CHAT BAR v7 — THEME TOGGLE BUTTON AT TOP RIGHT (FINAL) -->
 <style>
-    .glass-card {
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
+  /* ----- SCOPED ROOT (no conflicts) ----- */
+  .xroga-chat-root {
+    all: initial;
+    display: block;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+  }
+  .xroga-chat-root *,
+  .xroga-chat-root *::before,
+  .xroga-chat-root *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Fixed bottom bar */
+  .xroga-chat-bar {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 24px);
+    max-width: 920px;
+    z-index: 99999;
+    pointer-events: none;
+    animation: xrogaFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .xroga-glass-panel {
+    pointer-events: auto;
+    background: rgba(10, 18, 30, 0.6);
+    backdrop-filter: blur(28px) saturate(200%);
+    -webkit-backdrop-filter: blur(28px) saturate(200%);
+    border-radius: 28px;
+    padding: 12px 16px;
+    box-shadow: 
+      0 20px 40px -8px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+      0 4px 12px rgba(0, 0, 0, 0.25);
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.2s, box-shadow 0.3s;
+    position: relative;
+  }
+
+  /* Light theme overrides */
+  .xroga-chat-root.light-mode .xroga-glass-panel {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px) saturate(150%);
+    box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0,0,0,0.05) inset;
+    border: 0.5px solid rgba(0,0,0,0.05);
+  }
+  .xroga-chat-root.light-mode #chat-input,
+  .xroga-chat-root.light-mode .xroga-btn:not(.xroga-send) {
+    color: #1e1e2f;
+  }
+  .xroga-chat-root.light-mode .xroga-btn:not(.xroga-send) {
+    background: rgba(0,0,0,0.04);
+  }
+  /* Send button remains blue always */
+  .xroga-chat-root.light-mode .xroga-send {
+    background: linear-gradient(145deg, #2563eb, #1d4ed8) !important;
+    color: white !important;
+  }
+
+  .xroga-glass-panel:hover {
+    background: rgba(15, 28, 45, 0.7);
+  }
+  .xroga-chat-root.light-mode .xroga-glass-panel:hover {
+    background: rgba(255, 255, 255, 0.65);
+  }
+
+  /* Top actions bar */
+  .xroga-top-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  
+  .xroga-chat-root.light-mode .xroga-theme-toggle-btn {
+    background: rgba(255, 255, 255, 0.5);
+    color: #1e1e2f;
+    border-color: rgba(0,0,0,0.1);
+  }
+  .xroga-theme-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.02);
+  }
+  .xroga-theme-toggle-btn .theme-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.2);
+    border-radius: 8px;
+    padding: 6px;
+  }
+  .xroga-chat-root.light-mode .xroga-theme-toggle-btn .theme-icon {
+    background: rgba(0,0,0,0.08);
+  }
+  .xroga-theme-toggle-btn .theme-icon i {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+  .xroga-theme-toggle-btn .theme-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .xroga-theme-toggle-btn .theme-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+  .xroga-chat-root.light-mode .xroga-theme-toggle-btn .theme-badge {
+    background: rgba(0,0,0,0.08);
+  }
+
+  /* Minimize button */
+  .xroga-minimize-btn {
+    background: rgba(255,255,255,0.08);
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  .xroga-chat-root.light-mode .xroga-minimize-btn {
+    background: rgba(0,0,0,0.05);
+    color: #1e1e2f;
+  }
+  .xroga-minimize-btn:hover {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.05);
+  }
+
+  /* Flex layout for input row */
+  .xroga-flex-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .xroga-input-wrapper {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Textarea styling */
+  #chat-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 8px 4px;
+    color: white;
+    font-weight: 400;
+    caret-color: #3b82f6;
+    resize: none;
+    overflow-y: auto;
+    line-height: 1.5;
+    font-family: inherit;
+    transition: box-shadow 0.15s, height 0.1s ease;
+    min-height: 48px;
+    max-height: calc(1.5em * 18 + 16px);
+  }
+  .xroga-chat-root.light-mode #chat-input {
+    color: #0b1120;
+  }
+
+  #chat-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 350;
+  }
+  .xroga-chat-root.light-mode #chat-input::placeholder {
+    color: rgba(0,0,0,0.5);
+  }
+
+  /* Buttons (mic & send) */
+  .xroga-btn {
+    position: relative;
+    background: rgba(255, 255, 255, 0.06);
+    border: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.4rem;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.05) inset;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .xroga-chat-root.light-mode .xroga-btn:not(.xroga-send) {
+    background: rgba(0,0,0,0.05);
+    color: #1e1e2f;
+  }
+  .xroga-btn i {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    position: relative;
+    z-index: 2;
+  }
+  .xroga-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(115deg, transparent 0%, transparent 30%, rgba(255,255,255,0.2) 40%, rgba(255,255,255,0.4) 45%, rgba(255,255,255,0.2) 50%, transparent 60%, transparent 100%);
+    transform: translateX(-100%) rotate(25deg);
+    animation: xrogaShine 6s infinite ease-in-out;
+    pointer-events: none;
+    z-index: 1;
+  }
+  @keyframes xrogaShine {
+    0% { transform: translateX(-100%) rotate(25deg); }
+    20%, 100% { transform: translateX(100%) rotate(25deg); }
+  }
+  .xroga-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: scale(1.02);
+  }
+  .xroga-send {
+    background: linear-gradient(145deg, #2563eb, #1d4ed8) !important;
+    color: white !important;
+  }
+  .xroga-send:hover {
+    background: linear-gradient(145deg, #3b82f6, #2563eb) !important;
+  }
+
+  /* Mic listening state */
+  .xroga-mic.listening {
+    background: #dc2626 !important;
+    color: white;
+    animation: xrogaMicPulse 1.2s infinite;
+  }
+  @keyframes xrogaMicPulse {
+    0% { box-shadow: 0 0 0 0 rgba(220,38,38,0.7), 0 0 0 1px rgba(255,255,255,0.2) inset; }
+    70% { box-shadow: 0 0 0 12px rgba(220,38,38,0), 0 0 0 1px rgba(255,255,255,0.3) inset; }
+    100% { box-shadow: 0 0 0 0 rgba(220,38,38,0), 0 0 0 1px rgba(255,255,255,0.2) inset; }
+  }
+
+  /* Send magic */
+  .xroga-send.magic-send {
+    animation: xrogaSendMagic 0.5s ease-out forwards;
+  }
+  @keyframes xrogaSendMagic {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.15) rotate(5deg); box-shadow: 0 0 25px #3b82f6; }
+    50% { transform: scale(0.95) rotate(-3deg); }
+    75% { transform: scale(1.05) rotate(2deg); }
+    100% { transform: scale(1); }
+  }
+
+  .xroga-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.8);
+    transform: scale(0);
+    animation: xrogaRippleAnim 0.6s linear;
+    pointer-events: none;
+    z-index: 10;
+  }
+  @keyframes xrogaRippleAnim {
+    to { transform: scale(4); opacity: 0; }
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 600px) {
+    .xroga-chat-bar {
+      width: calc(100% - 16px);
+      bottom: 16px;
     }
-    .dark .glass-card {
-        background: rgba(15, 23, 42, 0.4);
+    .xroga-glass-panel {
+      padding: 10px 12px;
+      border-radius: 24px;
     }
-    .modern-send-btn {
-        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
-        color: white;
-        font-weight: 500;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    .xroga-btn {
+      width: 44px;
+      height: 44px;
     }
-    .dark .modern-send-btn {
-        box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+    #chat-input {
+      max-height: calc(1.5em * 13 + 16px);
+      font-size: 0.95rem;
     }
-    .shine-overlay {
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-        pointer-events: none;
-        z-index: 5;
+    .xroga-minimize-btn {
+      width: 34px;
+      height: 34px;
     }
-    .modern-send-btn:hover {
-        background: linear-gradient(135deg, #4f52e0 0%, #7c3aed 50%, #c026d3 100%);
-        border-color: rgba(255, 255, 255, 0.4);
-        box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+    .xroga-theme-toggle-btn {
+      padding: 4px 10px 4px 8px;
+      font-size: 0.8rem;
     }
+  }
+
+  @keyframes xrogaFadeUp {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
 </style>
 
+<div class="xroga-chat-root" id="xrogaRoot">
+  <!-- Hidden mobile theme toggle ID for external scripts -->
+  <span id="mobile-theme-toggle" style="display:none;"></span>
+
+  <div class="xroga-chat-bar">
+    <div class="xroga-glass-panel">
+      <!-- Top actions: Theme toggle + Minimize button -->
+      <div class="xroga-top-actions">
+       
+
+        <!-- Minimize button (appears when textarea reaches 6 rows) -->
+        <button class="xroga-minimize-btn" id="xrogaMinimizeBtn" title="Minimize/Expand" style="display: none;">
+          <i class="fas fa-chevron-up"></i>
+        </button>
+      </div>
+
+      <!-- Main input row -->
+      <div class="xroga-flex-row">
+        <div class="xroga-input-wrapper">
+          <textarea id="chat-input" placeholder="Ask anything..." autocomplete="off" aria-label="Chat input" rows="1"></textarea>
+        </div>
+        <button class="xroga-btn xroga-mic" id="xrogaMicBtn" aria-label="Voice input">
+          <i class="fas fa-microphone"></i>
+        </button>
+        <button class="xroga-btn xroga-send" id="xrogaSendBtn" aria-label="Send message">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Font Awesome -->
 <script>
-    (function() {
-        if (typeof lucide !== 'undefined') lucide.createIcons();
-        
-        const textarea = document.getElementById('chat-input');
-        const toggleBtn = document.getElementById('toggle-cap-btn');
-        const toggleIcon = toggleBtn.querySelector('i');
-        const sendBtn = document.getElementById('send-btn');
-        
-        const LINE_HEIGHT = 24;
-        const PADDING_Y = 24; // py-3 = 12px top + 12px bottom
-        const CAP_ROWS = 6;
-        const CAP_HEIGHT = (LINE_HEIGHT * CAP_ROWS) + PADDING_Y; // 168px
-        
-        let isCapped = false; // true = max 6 rows, false = full 18/13 rows
-        
-        // Get full max rows based on screen size
-        function getFullMaxRows() {
-            return window.matchMedia('(min-width: 768px)').matches ? 18 : 13;
-        }
-        
-        function getFullMaxHeight() {
-            return (LINE_HEIGHT * getFullMaxRows()) + PADDING_Y;
-        }
-        
-        function getCurrentMaxHeight() {
-            return isCapped ? CAP_HEIGHT : getFullMaxHeight();
-        }
-        
-        // Adjust height to content, respecting current max
-        function adjustHeight() {
-            textarea.style.height = 'auto';
-            const scrollHeight = textarea.scrollHeight;
-            const maxHeight = getCurrentMaxHeight();
-            const newHeight = Math.min(scrollHeight, maxHeight);
-            textarea.style.height = newHeight + 'px';
-            textarea.style.maxHeight = maxHeight + 'px';
-            
-            // Button visibility and icon logic
-            updateButtonState(scrollHeight);
-        }
-        
-        function updateButtonState(scrollHeight) {
-            const contentExceedsCap = scrollHeight > CAP_HEIGHT;
-            
-            if (isCapped) {
-                // When capped, always show the button (as expand) regardless of content height
-                toggleBtn.classList.remove('hidden');
-                toggleIcon.setAttribute('data-lucide', 'maximize-2');
-                toggleBtn.setAttribute('title', 'Expand to full height');
-            } else {
-                // When uncapped, show button only if content exceeds cap threshold
-                if (contentExceedsCap) {
-                    toggleBtn.classList.remove('hidden');
-                    toggleIcon.setAttribute('data-lucide', 'minimize-2');
-                    toggleBtn.setAttribute('title', 'Cap at 6 rows');
-                } else {
-                    toggleBtn.classList.add('hidden');
-                }
-            }
-            
-            if (typeof lucide !== 'undefined') lucide.createIcons();
-        }
-        
-        // Toggle between capped and uncapped
-        function toggleCap() {
-            isCapped = !isCapped;
-            adjustHeight(); // re-adjusts height and updates button icon
-        }
-        
-        // Reset to initial state (uncapped, empty, 1 row)
-        function resetToInitial() {
-            isCapped = false;
-            textarea.value = '';
-            textarea.style.height = '48px';
-            // Adjust max height to full and hide button (since content is empty)
-            textarea.style.maxHeight = getFullMaxHeight() + 'px';
-            toggleBtn.classList.add('hidden');
-            toggleIcon.setAttribute('data-lucide', 'minimize-2');
-            if (typeof lucide !== 'undefined') lucide.createIcons();
-        }
-        
-        // Event listeners
-        textarea.addEventListener('input', () => adjustHeight());
-        
-        toggleBtn.addEventListener('click', toggleCap);
-        
-        sendBtn.addEventListener('click', () => {
-            console.log('Message sent:', textarea.value);
-            resetToInitial();
-        });
-        
-        window.addEventListener('resize', () => {
-            // When screen size changes, update max height and adjust
-            if (!isCapped) {
-                textarea.style.maxHeight = getFullMaxHeight() + 'px';
-            }
-            adjustHeight();
-        });
-        
-        // Initialize
-        isCapped = false;
-        textarea.style.maxHeight = getFullMaxHeight() + 'px';
-        textarea.style.height = '48px';
-        toggleBtn.classList.add('hidden');
-    })();
+  (function loadFA() {
+    if (!document.querySelector('link[href*="font-awesome"]')) {
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
+      document.head.appendChild(link);
+    }
+  })();
 </script>
+
+<script>
+  (function() {
+    "use strict";
+    function initXroga() {
+      const root = document.getElementById('xrogaRoot');
+      const textarea = document.getElementById('chat-input');
+      const micBtn = document.getElementById('xrogaMicBtn');
+      const sendBtn = document.getElementById('xrogaSendBtn');
+      const minimizeBtn = document.getElementById('xrogaMinimizeBtn');
+      const themeToggle = document.getElementById('theme-toggle');
+
+      if (!textarea) return;
+
+      // ----- DYNAMIC PHRASES -----
+      const phrases = [
+        "website portfolios, ecommerce, landing pages, bookings websites and more you want",
+        "lightning creative chats daily",
+        "deep chats",
+        "shopping at affordable prices at 2500+ brands with boycotted alerts",
+        "travel at affordable airlines, flights, booking hotels and rent cars",
+        "seek islamic knowledge hadith, quran and more and ask islamic query"
+      ];
+      let phraseIndex = 0;
+      let interval = null;
+      let paused = false;
+      let listening = false;
+      let listeningTimer = null;
+      let isMinimized = false;
+      const DESKTOP_MAX_ROWS = 18;
+      const MOBILE_MAX_ROWS = 13;
+      const MIN_ROWS = 6;
+      const LINE_HEIGHT = 1.5 * 16;
+
+      function getMaxRows() {
+        return window.innerWidth <= 600 ? MOBILE_MAX_ROWS : DESKTOP_MAX_ROWS;
+      }
+
+      textarea.placeholder = phrases[0];
+      phraseIndex = 1;
+
+      function rotatePlaceholder() {
+        if (!paused && textarea.value.trim() === '' && !listening) {
+          textarea.placeholder = phrases[phraseIndex];
+        }
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+      }
+
+      function startRotation() {
+        if (interval) clearInterval(interval);
+        interval = setInterval(rotatePlaceholder, 3200);
+      }
+
+      function pause() { paused = true; }
+      function resume() {
+        if (textarea.value.trim() === '' && document.activeElement !== textarea && !listening) paused = false;
+        else paused = true;
+      }
+
+      textarea.addEventListener('focus', pause);
+      textarea.addEventListener('blur', resume);
+      textarea.addEventListener('input', function() {
+        paused = (textarea.value.trim() !== '');
+        autoResize();
+        updateMinimizeButtonVisibility();
+      });
+
+      function autoResize() {
+        textarea.style.height = 'auto';
+        const maxRows = isMinimized ? MIN_ROWS : getMaxRows();
+        const maxHeight = LINE_HEIGHT * maxRows + 16;
+        let newHeight = Math.min(textarea.scrollHeight, maxHeight);
+        textarea.style.height = newHeight + 'px';
+      }
+
+      function updateMinimizeButtonVisibility() {
+        if (!minimizeBtn) return;
+        const currentRows = Math.floor(textarea.scrollHeight / LINE_HEIGHT);
+        if (currentRows >= MIN_ROWS && !isMinimized) {
+          minimizeBtn.style.display = 'flex';
+        } else if (isMinimized) {
+          minimizeBtn.style.display = 'flex';
+        } else {
+          minimizeBtn.style.display = 'none';
+        }
+      }
+
+      minimizeBtn.addEventListener('click', function() {
+        isMinimized = !isMinimized;
+        const icon = minimizeBtn.querySelector('i');
+        if (isMinimized) {
+          icon.className = 'fas fa-chevron-down';
+          minimizeBtn.title = 'Expand';
+        } else {
+          icon.className = 'fas fa-chevron-up';
+          minimizeBtn.title = 'Minimize';
+        }
+        autoResize();
+        updateMinimizeButtonVisibility();
+      });
+
+      window.addEventListener('resize', () => {
+        autoResize();
+        updateMinimizeButtonVisibility();
+      });
+
+      autoResize();
+      startRotation();
+
+      // ----- THEME TOGGLE FUNCTIONALITY -----
+      function updateThemeUI(isLight) {
+        const lightIcon = themeToggle.querySelector('[data-theme-light-icon]');
+        const darkIcon = themeToggle.querySelector('[data-theme-dark-icon]');
+        const lightText = themeToggle.querySelector('[data-theme-light-text]');
+        const darkText = themeToggle.querySelector('[data-theme-dark-text]');
+        if (isLight) {
+          lightIcon.style.display = 'none';
+          darkIcon.style.display = 'block';
+          lightText.style.display = 'none';
+          darkText.style.display = 'inline';
+        } else {
+          lightIcon.style.display = 'block';
+          darkIcon.style.display = 'none';
+          lightText.style.display = 'inline';
+          darkText.style.display = 'none';
+        }
+      }
+
+      themeToggle.addEventListener('click', () => {
+        root.classList.toggle('light-mode');
+        updateThemeUI(root.classList.contains('light-mode'));
+        // Trigger hidden mobile toggle for external sync
+        const mobileToggle = document.getElementById('mobile-theme-toggle');
+        if (mobileToggle) mobileToggle.click();
+      });
+
+      // Initialize UI based on any existing class
+      updateThemeUI(root.classList.contains('light-mode'));
+
+      // ----- MIC TOGGLE -----
+      function startListening() {
+        if (!micBtn) return;
+        listening = true;
+        paused = true;
+        micBtn.classList.add('listening');
+        textarea.placeholder = '🎤 Listening... speak now';
+        if (listeningTimer) clearTimeout(listeningTimer);
+        listeningTimer = setTimeout(() => { if (listening) stopListening(true); }, 5000);
+      }
+      function stopListening(setRandomPhrase = true) {
+        if (!micBtn) return;
+        listening = false;
+        micBtn.classList.remove('listening');
+        if (listeningTimer) { clearTimeout(listeningTimer); listeningTimer = null; }
+        if (setRandomPhrase && textarea.value.trim() === '') {
+          const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+          textarea.placeholder = randomPhrase;
+          phraseIndex = phrases.indexOf(randomPhrase) + 1;
+        }
+        if (textarea.value.trim() === '' && document.activeElement !== textarea) paused = false;
+      }
+      micBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        listening ? stopListening(true) : startListening();
+      });
+      textarea.addEventListener('input', () => { if (listening && textarea.value.trim() !== '') stopListening(false); });
+
+      // ----- SEND MAGIC -----
+      function createRipple(btn, e) {
+        const ripple = document.createElement('span');
+        ripple.className = 'xroga-ripple';
+        const rect = btn.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+        ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+        btn.style.position = 'relative';
+        btn.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      }
+      sendBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        sendBtn.classList.add('magic-send');
+        setTimeout(() => sendBtn.classList.remove('magic-send'), 500);
+        createRipple(sendBtn, e);
+
+        const msg = textarea.value.trim();
+        if (msg) {
+          console.log(`💬 Xroga AI · Sent: "${msg}"`);
+          textarea.value = '';
+          autoResize();
+          const fresh = phrases[Math.floor(Math.random() * phrases.length)];
+          textarea.placeholder = fresh;
+          phraseIndex = phrases.indexOf(fresh) + 1;
+          textarea.style.boxShadow = '0 0 0 2px #3b82f6';
+          setTimeout(() => textarea.style.boxShadow = '', 200);
+          if (document.activeElement !== textarea) paused = false;
+        } else {
+          const suggestion = phrases[Math.floor(Math.random() * phrases.length)];
+          textarea.placeholder = suggestion;
+          phraseIndex = phrases.indexOf(suggestion) + 1;
+        }
+        if (listening) stopListening(false);
+      });
+
+      textarea.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          sendBtn.click();
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.xroga-chat-bar') && textarea.value.trim() === '' && !listening) paused = false;
+      });
+
+      console.log('✅ Xroga AI v7 · Theme toggle button ready');
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initXroga);
+    else initXroga();
+  })();
+</script>
+<!-- END XROGA AI CHAT BAR v7 -->
     
     <!-- Settings Modal (enhanced with auto-speak) -->
     <div id="settings-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
@@ -8133,6 +8538,9 @@ else if (opt.classList.contains('shop-confidence')) btnIcon.style.color = '#22d3
 </script>
   </section>
 </div>
+
+
+
 
 
 
