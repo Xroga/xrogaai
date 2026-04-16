@@ -8526,6 +8526,7 @@ window.xroga = {
     - Dropdown with max 4 visible items + scroll
     - Auto‑scroll carousel starts after 5s, cycles through models
     - Stops instantly on any user interaction
+    - Hint message: "Drag to move • 6 models"
     - Fully responsive – smaller on mobile
     - Touch + mouse dragging
 -->
@@ -8605,12 +8606,15 @@ window.xroga = {
         transition: opacity 0.2s ease, width 0.2s ease;
       }
 
-      /* minimized state – hide name and chevron, shrink padding */
+      /* minimized state – hide name, chevron, and hint */
       .selector-btn.minimized {
         padding: 0.5rem 0.8rem;
       }
       .selector-btn.minimized .btn-name,
       .selector-btn.minimized .btn-chevron {
+        display: none;
+      }
+      .selector-btn.minimized ~ .drag-hint {
         display: none;
       }
 
@@ -8642,6 +8646,26 @@ window.xroga = {
 
       .selector-btn.active .btn-chevron {
         transform: rotate(180deg);
+      }
+
+      /* 🆕 Hint message below the button */
+      .drag-hint {
+        margin-top: 0.5rem;
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.5);
+        text-align: center;
+        white-space: nowrap;
+        pointer-events: none;  /* allow clicks to pass through */
+        text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        transition: opacity 0.2s;
+        letter-spacing: 0.3px;
+        backdrop-filter: blur(4px);
+        padding: 0.2rem 0.8rem;
+        border-radius: 2rem;
+        background: rgba(10, 20, 30, 0.2);
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       /* dropdown – now scrollable, max 4 items */
@@ -8828,22 +8852,31 @@ window.xroga = {
         .option-emoji {
           font-size: 1.3rem;
         }
+        .drag-hint {
+          font-size: 0.6rem;
+          padding: 0.15rem 0.6rem;
+        }
       }
     </style>
 
     <!-- font awesome icons (already loaded) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+ <!-- 🆕 Hint message -->
+      <div class="drag-hint">
+        <i class="fas fa-arrows-alt" style="margin-right: 4px; opacity: 0.7;"></i> Drag to move • 6 AI models
+      </div>
     <!-- main component -->
     <div style="position: relative;">
       <div class="selector-btn" id="selectorBtn">
         <!-- drag handle (grip) -->
         <div class="drag-handle" id="dragHandle">
-          <i class="fas fa-grip-vertical"></i>
-        </div>
+        <i class="fas fa-arrows-alt" style="color: white;"></i>
+
+</div>
 
         <!-- model icon (dynamic) -->
-        <i class="fas fa-terminal btn-icon" id="btnIcon" style="color: #3b82f6;"></i>
+        <i class="fa-sharp fa-solid fa-code" id="btnIcon" style="color: #3b82f6;"></i>
         
         <!-- text and chevron (visible in full mode) -->
         <span class="btn-name" id="btnName">Code Expert</span>
@@ -8851,22 +8884,20 @@ window.xroga = {
 
         <!-- minimize / restore button (chevron changes direction) -->
         <div class="minimize-toggle" id="minimizeToggle" title="Minimize to icon / Restore">
-          <i class="fas fa-chevron-up" id="minimizeIcon"></i>
+          <i class="fas fa-angle-double-down" id="fas fa-angle-double-down"></i>
         </div>
       </div>
 
-      <!-- dropdown panel with six models -->
-      <div class="model-dropdown" id="modelDropdown">
-        <div class="model-option code-expert selected" data-model="code-expert" data-icon="fa-terminal" data-name="Code Expert">
-          <i class="fas fa-terminal option-icon"></i>
-          <span class="option-emoji">🦊</span>
-          <span class="option-name">Code Expert</span>
-          <div class="limit-chip"><i class="fa-regular fa-message"></i> 30/day</div>
-        </div>
-        <div class="model-option lightening" data-model="lightening" data-icon="fa-rocket" data-name="Lightening">
-          <i class="fas fa-rocket option-icon"></i>
+
+      <!-- dropdown panel with six models --> <div class="model-dropdown" id="modelDropdown"> <div class="model-option code-expert selected" data-model="code-expert" data-icon="fa-sharp fa-solid fa-code" data-name="Code Expert"> <i class="fa-sharp fa-solid fa-code option-icon"></i> <span class="option-emoji">🦊</span> <span class="option-name">Code Expert</span>
+      </div> 
+      
+        <div class="model-option lightening" data-model="lightening" data-icon="fa-solid fa-paint-brush" data-name="Fast Creative">
+          <i class="fas fa-bolt option-icon"></i>
           <span class="option-emoji">🐎</span>
-          <span class="option-name">Lightening & Creative</span>
+          <div style="white-space: nowrap;">
+    <span class="option-name">Fast & Creative</span>
+</div>
           <div class="placeholder-chip"></div>
         </div>
         <div class="model-option deep-thought" data-model="deep-thought" data-icon="fa-book" data-name="Deep Thought">
@@ -8876,21 +8907,28 @@ window.xroga = {
           <div class="placeholder-chip"></div>
         </div>
         <div class="model-option shop-confidence" data-model="shop-confidence" data-icon="fa-shopping-cart" data-name="Shop with Confidence">
-          <i class="fas fa-shopping-cart option-icon"></i>
-          <span class="option-emoji">🛒</span>
-          <span class="option-name">Shop with Confidence</span>
-          <div class="placeholder-chip"></div>
+          <i class="fas fa-shopping-bag option-icon" id="btnIcon" style="color: #800080;"></i>
+          <span class="option-emoji">🛍️</span>
+          <div style="white-space: nowrap;">
+    <span class="option-name">Shop Any Product</span>
+</div>
+
+          
         </div>
         <div class="model-option travel-concierge" data-model="travel-concierge" data-icon="fa-plane" data-name="Travel Concierge">
-          <i class="fas fa-plane option-icon"></i>
+          <i class="fas fa-plane option-icon" id="btnIcon" style="color: #8FD6C8;"></i>
           <span class="option-emoji">🌍</span>
+          <div style="white-space: nowrap;">
           <span class="option-name">Travel Concierge</span>
+          </div>
           <div class="placeholder-chip"></div>
         </div>
         <div class="model-option muslim-islamic" data-model="muslim-islamic" data-icon="fa-star-and-crescent" data-name="Muslim Islamic">
-          <i class="fas fa-star-and-crescent option-icon"></i>
+          <i class="fas fa-star-and-crescent option-icon" id="btnIcon" style="color: #D4AF37;"></i>
           <span class="option-emoji">🕌</span>
+          <div style="white-space: nowrap;">
           <span class="option-name">Muslim Islamic</span>
+          </div>
           <div class="placeholder-chip"></div>
         </div>
       </div>
@@ -9233,3 +9271,5 @@ window.xroga = {
     </script>
   </section>
 </div>
+
+
