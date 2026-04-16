@@ -1160,28 +1160,17 @@
 </div>
             
 <!-- Main Header -->
-           <header id="main-header" class="px-4 md:px-6 pt-4 pb-2 md:pt-6 md:pb-3 transition-all duration-300">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center justify-between mb-4">
-    <div class="flex items-center gap-1">
+           <header id="main-header" class="px-4 md:px-1 pt-1 pb-1 md:pt-1 md:pb-1 transition-all duration-300">
+                <div class="flex items-center justify-between mb-1">
+                    <div class="flex items-center justify-between mb-1">
+    <div class="flex items-center gap-0">
 
 
-<div class="flex-1 min-w-0">
-  <h1 class="text-2xl md:text-3xl font-bold gradient-text">
-    Welcome back, <span id="username" class="gradient-text">Alex</span>
-  </h1>
+<div class="flex-0 min-w-0">
+
   
   <!-- Dynamic animated text container — modern glass + glow -->
-  <div class="relative mt-3 min-h-[4rem] overflow-visible">
-    <div class="modern-rotator-wrapper backdrop-blur-md bg-white/70 dark:bg-gray-900/60 border border-white/30 dark:border-gray-700/50 rounded-2xl px-5 py-3 shadow-lg shadow-purple-500/10 dark:shadow-purple-800/20 transition-all duration-500 hover:shadow-purple-500/20 hover:border-purple-400/40">
-      <p id="dynamicRotator" class="text-lg md:text-xl font-medium text-gray-800 dark:text-gray-200 flex items-center gap-2">
-        <span class="rotating-text-content" id="typewriterText">Can you build websites, portfolios, landing pages, ecommerce, restaurants, booking websites and more...</span>
-        <span class="modern-cursor ml-1 inline-block w-0.5 h-6 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full"></span>
-      </p>
-    </div>
-    <!-- Subtle animated glow behind -->
-    <div class="absolute -inset-1 bg-gradient-to-r from-purple-500/20 via-fuchsia-500/20 to-cyan-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition duration-700 -z-10"></div>
-  </div>
+  
 </div>
 
 <style>
@@ -1261,79 +1250,7 @@
   }
 </style>
 
-<script>
-  (function() {
-    const rotatorEl = document.getElementById('dynamicRotator');
-    if (!rotatorEl) return;
 
-    const textSpan = document.getElementById('typewriterText');
-    if (!textSpan) return;
-
-    const phrases = [
-      "can you build websites, portfolios, landing pages, ecommerce, hotels & bookings? ✨",
-      "want instant & creative chat ideas? more talks? 💡",
-      "need more detailed and reasoning chats? 🧠",
-      "save money on affordable shopping premium. Support justice? we recommend boycott‑aware items. ⚖️",
-      "worried about costly flights, hotels, cars? we found best affordable travel for you. ✈️",
-      "if you're Muslim: study Islam with Hadith, Quran, Fatwa & daily guidance. Qibla direction on travel? 🕋",
-      "your AI partner is ready — build, deploy, explore. Let's create magic. 🌟"
-    ];
-
-    let currentPhraseIndex = 0;
-    let isTyping = false;
-    let timeoutId = null;
-
-    // Typewriter function
-    function typeWriter(text, element, speed = 50) {
-      return new Promise((resolve) => {
-        let i = 0;
-        element.textContent = '';
-        
-        function type() {
-          if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            timeoutId = setTimeout(type, speed);
-          } else {
-            resolve();
-          }
-        }
-        
-        type();
-      });
-    }
-
-    // Clear text (optional fast erase effect – we just replace immediately for smooth rotation)
-    async function showNextPhrase() {
-      if (isTyping) return;
-      isTyping = true;
-
-      const phrase = phrases[currentPhraseIndex];
-      
-      // Type out the current phrase
-      await typeWriter(phrase, textSpan, 50);
-      
-      // Wait 3 seconds after typing completes
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      
-      // Move to next phrase
-      currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-      
-      isTyping = false;
-      
-      // Recursively call to continue rotation
-      showNextPhrase();
-    }
-
-    // Initialize with default text cleared and start typing first phrase after short delay
-    setTimeout(() => {
-      // Clear default text
-      textSpan.textContent = '';
-      currentPhraseIndex = 0;
-      showNextPhrase();
-    }, 300);
-  })();
-</script>
         </div>
         </div>
                     <div class="flex items-center gap-2 mobile-hidden">
@@ -5137,10 +5054,13 @@ function rotateWelcomeContent() {
   const promptData = promptRotations[promptIndex];
   const promptElement = document.querySelector('.prompt-text');
   if (promptElement) {
-    promptElement.innerHTML = `
-      <i data-lucide="${promptData.icon}" class="w-5 h-5"></i>
-      <span>${promptData.text}</span>
-    `;
+    const newHTML = `<i data-lucide="${promptData.icon}" class="w-5 h-5"></i><span>${promptData.text}</span>`;
+promptElement.style.opacity = '0';
+setTimeout(() => {
+  promptElement.innerHTML = newHTML;
+  promptElement.style.opacity = '1';
+  if (typeof lucide !== 'undefined') lucide.createIcons();
+}, 150);
   }
 
   // Rotate suggestion cards (4 cards)
@@ -5192,12 +5112,25 @@ function renderWelcomeScreen() {
         </h1>
         <div class="welcome-underline"></div>
         
+         <div class="relative mt-3 min-h-[4rem] overflow-visible">
+    <div class="modern-rotator-wrapper backdrop-blur-md bg-white/70 dark:bg-gray-900/60 border border-white/30 dark:border-gray-700/50 rounded-2xl px-5 py-3 shadow-lg shadow-purple-500/10 dark:shadow-purple-800/20 transition-all duration-500 hover:shadow-purple-500/20 hover:border-purple-400/40">
+      <p id="dynamicRotator" class="text-lg md:text-xl font-medium text-gray-800 dark:text-gray-200 flex items-center gap-2">
+        <span class="rotating-text-content" id="typewriterText">Can you build websites, portfolios, landing pages, ecommerce, restaurants, booking websites and more...</span>
+        <span class="modern-cursor ml-1 inline-block w-0.5 h-6 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full"></span>
+      </p>
+    </div>
+    <!-- Subtle animated glow behind -->
+    <div class="absolute -inset-1 bg-gradient-to-r from-purple-500/20 via-fuchsia-500/20 to-cyan-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition duration-700 -z-10"></div>
+  </div>
+  
         <div class="welcome-prompt-box" onclick="document.getElementById('chat-input').focus();">
           <div class="prompt-text">
             <i data-lucide="${initialPrompt.icon}" class="w-5 h-5"></i>
             <span>${initialPrompt.text}</span>
           </div>
         </div>
+        
+       
         
         <div class="welcome-suggestions">
           ${initialSuggestions.map(item => `
@@ -5240,6 +5173,79 @@ function stopWelcomeRotation() {
 
 // Call this when appropriate
 renderWelcomeScreen();
+
+(function() {
+    const rotatorEl = document.getElementById('dynamicRotator');
+    if (!rotatorEl) return;
+
+    const textSpan = document.getElementById('typewriterText');
+    if (!textSpan) return;
+
+    const phrases = [
+      "can you build websites, portfolios, landing pages, ecommerce, hotels & bookings? ✨",
+      "want instant & creative chat ideas? more talks? 💡",
+      "need more detailed and reasoning chats? 🧠",
+      "save money on affordable shopping premium. Support justice? we recommend boycott‑aware items. ⚖️",
+      "worried about costly flights, hotels, cars? we found best affordable travel for you. ✈️",
+      "if you're Muslim: study Islam with Hadith, Quran, Fatwa & daily guidance. Qibla direction on travel? 🕋",
+      "your AI partner is ready — build, deploy, explore. Let's create magic. 🌟"
+    ];
+
+    let currentPhraseIndex = 0;
+    let isTyping = false;
+    let timeoutId = null;
+
+    // Typewriter function
+    function typeWriter(text, element, speed = 50) {
+      return new Promise((resolve) => {
+        let i = 0;
+        element.textContent = '';
+        
+        function type() {
+          if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            timeoutId = setTimeout(type, speed);
+          } else {
+            resolve();
+          }
+        }
+        
+        type();
+      });
+    }
+
+    // Clear text (optional fast erase effect – we just replace immediately for smooth rotation)
+    async function showNextPhrase() {
+      if (isTyping) return;
+      isTyping = true;
+
+      const phrase = phrases[currentPhraseIndex];
+      
+      // Type out the current phrase
+      await typeWriter(phrase, textSpan, 50);
+      
+      // Wait 3 seconds after typing completes
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      
+      // Move to next phrase
+      currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+      
+      isTyping = false;
+      
+      // Recursively call to continue rotation
+      showNextPhrase();
+    }
+
+    // Initialize with default text cleared and start typing first phrase after short delay
+    setTimeout(() => {
+      // Clear default text
+      textSpan.textContent = '';
+      currentPhraseIndex = 0;
+      showNextPhrase();
+    }, 300);
+  })();
+
 
 // Create the new chat object with correct type
     const newChat = {
@@ -8516,12 +8522,15 @@ window.xroga = {
   =============================================
   Features:
     - Drag anywhere using the six‑dots handle (stays inside viewport)
-    - Click the ✨ icon to collapse to icon only / restore full button
-    - Dropdown, model selection, and glass styling unchanged
-    - Fully self‑contained, works in any container
+    - Click the ▼/▲ icon to collapse to icon only / restore full button
+    - Dropdown with max 4 visible items + scroll
+    - Auto‑scroll carousel starts after 5s, cycles through models
+    - Stops instantly on any user interaction
+    - Fully responsive – smaller on mobile
+    - Touch + mouse dragging
 -->
 
-<div class="selector-placement draggable-wrapper"> <!-- draggable class added, position managed by JS -->
+<div class="selector-placement draggable-wrapper">
   <section class="code">
     <style>
       /* === compact glass selector – refreshed icons & emojis === */
@@ -8570,7 +8579,7 @@ window.xroga = {
         color: rgba(255,255,255,0.9);
       }
 
-      /* minimize/restore button (✨) */
+      /* minimize/restore button (chevron) */
       .minimize-toggle {
         background: rgba(255,255,255,0.1);
         border: none;
@@ -8635,7 +8644,7 @@ window.xroga = {
         transform: rotate(180deg);
       }
 
-      /* dropdown – unchanged */
+      /* dropdown – now scrollable, max 4 items */
       .model-dropdown {
         position: absolute;
         top: calc(100% + 0.5rem);
@@ -8652,6 +8661,25 @@ window.xroga = {
         z-index: 100;
         flex-direction: column;
         gap: 0.2rem;
+        
+        /* 🔥 Scrollable: show ~4 items */
+        max-height: 192px;  /* 4 * ~48px per option */
+        overflow-y: auto;
+        
+        /* Custom scrollbar for glass look */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255,255,255,0.3) transparent;
+      }
+      .model-dropdown::-webkit-scrollbar {
+        width: 5px;
+      }
+      .model-dropdown::-webkit-scrollbar-track {
+        background: transparent;
+        margin-block: 10px;
+      }
+      .model-dropdown::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,0.25);
+        border-radius: 20px;
       }
 
       .model-dropdown.show {
@@ -8669,6 +8697,7 @@ window.xroga = {
         border: 1px solid transparent;
         color: rgba(255,255,255,0.9);
         font-size: 0.9rem;
+        flex-shrink: 0;  /* prevent squishing */
       }
 
       .model-option:hover {
@@ -8760,277 +8789,447 @@ window.xroga = {
       .selector-placement.draggable-wrapper {
         transition: none;
       }
+
+      /* 📱 Mobile optimisations – smaller sizes */
+      @media (max-width: 480px) {
+        .selector-btn {
+          padding: 0.35rem 0.8rem 0.35rem 0.5rem;
+          gap: 0.3rem;
+        }
+        .drag-handle {
+          font-size: 0.85rem;
+        }
+        .btn-icon {
+          font-size: 1.3rem;
+        }
+        .minimized .btn-icon {
+          font-size: 1.4rem;
+        }
+        .btn-name {
+          font-size: 0.8rem;
+        }
+        .minimize-toggle {
+          width: 22px;
+          height: 22px;
+          font-size: 0.75rem;
+        }
+        .model-dropdown {
+          min-width: 200px;
+          max-height: 176px;  /* slightly smaller for 4 items */
+        }
+        .model-option {
+          padding: 0.4rem 0.7rem;
+          font-size: 0.8rem;
+        }
+        .option-icon {
+          font-size: 1.4rem;
+          width: 1.8rem;
+        }
+        .option-emoji {
+          font-size: 1.3rem;
+        }
+      }
     </style>
 
     <!-- font awesome icons (already loaded) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-<!-- main component -->
-<div style="position: relative;">
-  <div class="selector-btn" id="selectorBtn">
-    <!-- drag handle (grip) -->
-    <div class="drag-handle" id="dragHandle">
-      <i class="fas fa-grip-vertical"></i>
+    <!-- main component -->
+    <div style="position: relative;">
+      <div class="selector-btn" id="selectorBtn">
+        <!-- drag handle (grip) -->
+        <div class="drag-handle" id="dragHandle">
+          <i class="fas fa-grip-vertical"></i>
+        </div>
+
+        <!-- model icon (dynamic) -->
+        <i class="fas fa-terminal btn-icon" id="btnIcon" style="color: #3b82f6;"></i>
+        
+        <!-- text and chevron (visible in full mode) -->
+        <span class="btn-name" id="btnName">Code Expert</span>
+        <i class="fas fa-chevron-down btn-chevron"></i>
+
+        <!-- minimize / restore button (chevron changes direction) -->
+        <div class="minimize-toggle" id="minimizeToggle" title="Minimize to icon / Restore">
+          <i class="fas fa-chevron-up" id="minimizeIcon"></i>
+        </div>
+      </div>
+
+      <!-- dropdown panel with six models -->
+      <div class="model-dropdown" id="modelDropdown">
+        <div class="model-option code-expert selected" data-model="code-expert" data-icon="fa-terminal" data-name="Code Expert">
+          <i class="fas fa-terminal option-icon"></i>
+          <span class="option-emoji">🦊</span>
+          <span class="option-name">Code Expert</span>
+          <div class="limit-chip"><i class="fa-regular fa-message"></i> 30/day</div>
+        </div>
+        <div class="model-option lightening" data-model="lightening" data-icon="fa-rocket" data-name="Lightening">
+          <i class="fas fa-rocket option-icon"></i>
+          <span class="option-emoji">🐎</span>
+          <span class="option-name">Lightening & Creative</span>
+          <div class="placeholder-chip"></div>
+        </div>
+        <div class="model-option deep-thought" data-model="deep-thought" data-icon="fa-book" data-name="Deep Thought">
+          <i class="fas fa-book option-icon"></i>
+          <span class="option-emoji">🐋</span>
+          <span class="option-name">Deep Thought</span>
+          <div class="placeholder-chip"></div>
+        </div>
+        <div class="model-option shop-confidence" data-model="shop-confidence" data-icon="fa-shopping-cart" data-name="Shop with Confidence">
+          <i class="fas fa-shopping-cart option-icon"></i>
+          <span class="option-emoji">🛒</span>
+          <span class="option-name">Shop with Confidence</span>
+          <div class="placeholder-chip"></div>
+        </div>
+        <div class="model-option travel-concierge" data-model="travel-concierge" data-icon="fa-plane" data-name="Travel Concierge">
+          <i class="fas fa-plane option-icon"></i>
+          <span class="option-emoji">🌍</span>
+          <span class="option-name">Travel Concierge</span>
+          <div class="placeholder-chip"></div>
+        </div>
+        <div class="model-option muslim-islamic" data-model="muslim-islamic" data-icon="fa-star-and-crescent" data-name="Muslim Islamic">
+          <i class="fas fa-star-and-crescent option-icon"></i>
+          <span class="option-emoji">🕌</span>
+          <span class="option-name">Muslim Islamic</span>
+          <div class="placeholder-chip"></div>
+        </div>
+      </div>
     </div>
 
-    <!-- model icon (dynamic) -->
-    <i class="fas fa-terminal btn-icon" id="btnIcon" style="color: #3b82f6;"></i>
-    
-    <!-- text and chevron (visible in full mode) -->
-    <span class="btn-name" id="btnName">Code Expert</span>
-    <i class="fas fa-chevron-down btn-chevron"></i>
+    <script>
+      (function() {
+        // ----- DOM elements -----
+        const wrapper = document.querySelector('.selector-placement.draggable-wrapper');
+        const btn = document.getElementById('selectorBtn');
+        const dropdown = document.getElementById('modelDropdown');
+        const options = document.querySelectorAll('.model-option');
+        const btnIcon = document.getElementById('btnIcon');
+        const btnName = document.getElementById('btnName');
+        const dragHandle = document.getElementById('dragHandle');
+        const minimizeToggle = document.getElementById('minimizeToggle');
+        const minimizeIcon = document.getElementById('minimizeIcon');
 
-    <!-- minimize / restore button (✨) -->
-    <div class="minimize-toggle" id="minimizeToggle" title="Minimize to icon / Restore">
-      <i class="fas fa-star-of-life"></i>
-    </div>
-  </div>
+        // ----- Auto‑scroll carousel state -----
+        let autoScrollInterval = null;
+        let autoScrollTimeout = null;
+        let userInteracted = false;
 
-  <!-- dropdown panel with fourth option -->
-  <div class="model-dropdown" id="modelDropdown">
-    <div class="model-option code-expert selected" data-model="code-expert" data-icon="fa-terminal" data-name="Code Expert">
-      <i class="fas fa-terminal option-icon"></i>
-      <span class="option-emoji">🦊</span>
-      <span class="option-name">Code Expert</span>
-      <div class="limit-chip"><i class="fa-regular fa-message"></i> 30/day</div>
-    </div>
-    <div class="model-option lightening" data-model="lightening" data-icon="fa-rocket" data-name="Lightening">
-      <i class="fas fa-rocket option-icon"></i>
-      <span class="option-emoji">🐎</span>
-      <span class="option-name">Lightening & Creative</span>
-      <div class="placeholder-chip"></div>
-    </div>
-    <div class="model-option deep-thought" data-model="deep-thought" data-icon="fa-book" data-name="Deep Thought">
-      <i class="fas fa-book option-icon"></i>
-      <span class="option-emoji">🐋</span>
-      <span class="option-name">Deep Thought</span>
-      <div class="placeholder-chip"></div>
-    </div>
-    <div class="model-option shop-confidence" data-model="shop-confidence" data-icon="fa-shopping-cart" data-name="Shop with Confidence">
-  <i class="fas fa-shopping-cart option-icon"></i>
-  <span class="option-emoji">🛒</span>
-  <span class="option-name">Shop with Confidence</span>
-  <div class="placeholder-chip"></div>
-</div>
-    <!-- 🆕 Travel Concierge -->
-    <div class="model-option travel-concierge" data-model="travel-concierge" data-icon="fa-plane" data-name="Travel Concierge">
-      <i class="fas fa-plane option-icon"></i>
-      <span class="option-emoji">🌍</span>
-      <span class="option-name">Travel Concierge</span>
-      <div class="placeholder-chip"></div>
-    </div>
-    <div class="model-option muslim-islamic" data-model="muslim-islamic" data-icon="fa-star-and-crescent" data-name="Muslim Islamic">
-  <i class="fas fa-star-and-crescent option-icon"></i>
-  <span class="option-emoji">🕌</span>
-  <span class="option-name">Muslim Islamic</span>
-  <div class="placeholder-chip"></div>
-</div>
-  </div>
-</div>
+        // Stop all auto‑scroll timers
+        function stopAutoScroll() {
+          if (autoScrollTimeout) {
+            clearTimeout(autoScrollTimeout);
+            autoScrollTimeout = null;
+          }
+          if (autoScrollInterval) {
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = null;
+          }
+        }
 
-<script>
-  (function() {
-    // ----- DOM elements -----
-    const wrapper = document.querySelector('.selector-placement.draggable-wrapper');
-    const btn = document.getElementById('selectorBtn');
-    const dropdown = document.getElementById('modelDropdown');
-    const options = document.querySelectorAll('.model-option');
-    const btnIcon = document.getElementById('btnIcon');
-    const btnName = document.getElementById('btnName');
-    const dragHandle = document.getElementById('dragHandle');
-    const minimizeToggle = document.getElementById('minimizeToggle');
+        // Called when user interacts (mouse/touch/scroll) – stops auto‑scroll permanently for this session
+        function handleUserInteraction() {
+          if (!userInteracted) {
+            userInteracted = true;
+            stopAutoScroll();
+          }
+        }
 
-    // ----- Minimize / Restore logic -----
-    function toggleMinimize() {
-      btn.classList.toggle('minimized');
-      if (btn.classList.contains('minimized')) {
-        dropdown.classList.remove('show');
-        btn.classList.remove('active');
-      }
-    }
-    minimizeToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleMinimize();
-    });
+        // Auto‑scroll carousel: scroll to next option, loop back to first after last
+        function autoScrollCarousel() {
+          if (!dropdown.classList.contains('show') || userInteracted) {
+            stopAutoScroll();
+            return;
+          }
 
-    // ----- Dropdown toggle (respect minimize state) -----
-    btn.addEventListener('click', (e) => {
-      if (btn.classList.contains('minimized')) {
-        e.stopPropagation();
-        toggleMinimize();
-        return;
-      }
-      e.stopPropagation();
-      dropdown.classList.toggle('show');
-      btn.classList.toggle('active');
-    });
+          const opts = Array.from(options);
+          if (opts.length === 0) return;
 
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
-        dropdown.classList.remove('show');
-        btn.classList.remove('active');
-      }
-    });
+          // Find currently visible (nearest to top edge) option – simple approach: use first visible
+          const dropdownRect = dropdown.getBoundingClientRect();
+          let currentIndex = opts.findIndex(opt => {
+            const rect = opt.getBoundingClientRect();
+            return rect.top >= dropdownRect.top && rect.top < dropdownRect.bottom;
+          });
 
-    // ----- Model selection (call switchUIMode for ALL modes) -----
-options.forEach(opt => {
-  opt.addEventListener('click', (e) => {
-    e.stopPropagation();
-    options.forEach(o => o.classList.remove('selected'));
-    opt.classList.add('selected');
+          // Fallback: use selected option if none visible (shouldn't happen)
+          if (currentIndex === -1) {
+            const selectedOpt = opts.find(opt => opt.classList.contains('selected'));
+            currentIndex = selectedOpt ? opts.indexOf(selectedOpt) : 0;
+          }
 
-    const model = opt.dataset.model;
-    const iconClass = opt.dataset.icon;
-    const modelName = opt.dataset.name;
+          // Determine next index (loop forward)
+          const nextIndex = (currentIndex + 1) % opts.length;
+          const nextOpt = opts[nextIndex];
 
-    // Update button appearance
-    btnIcon.className = `btn-icon fas ${iconClass}`;
-    btnName.textContent = modelName;
-    if (opt.classList.contains('code-expert')) btnIcon.style.color = '#3b82f6';
-    else if (opt.classList.contains('lightening')) btnIcon.style.color = '#fbbf24';
-    else if (opt.classList.contains('deep-thought')) btnIcon.style.color = '#34d399';
-    else if (opt.classList.contains('travel-concierge')) btnIcon.style.color = '#10b981';
-else if (opt.classList.contains('muslim-islamic')) btnIcon.style.color = '#d4af37';
-else if (opt.classList.contains('shop-confidence')) btnIcon.style.color = '#22d3ee';  // cyan-400
+          // Smooth scroll to next option
+          if (nextOpt) {
+            nextOpt.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          }
+        }
 
-    // ✅ Update global state
-    if (window.xroga && window.xroga.state) {
-      window.xroga.state.currentMode = model;
-      localStorage.setItem('currentMode', model);
-    }
+        // Start auto‑scroll after 5 seconds (if user hasn't interacted)
+        function scheduleAutoScroll() {
+          stopAutoScroll(); // clear any pending
+          if (userInteracted) return;
 
-    // ✅ Expand sidebar section
-    if (window.xroga && typeof window.xroga.expandSectionForMode === 'function') {
-      window.xroga.expandSectionForMode(model);
-    }
+          autoScrollTimeout = setTimeout(() => {
+            if (!dropdown.classList.contains('show') || userInteracted) return;
+            // Start carousel every 1.5 seconds
+            autoScrollInterval = setInterval(() => autoScrollCarousel(), 1500);
+            // Run immediately first time
+            autoScrollCarousel();
+          }, 5000);
+        }
 
-    // ✅ Update mode reminder
-    if (typeof window.updateModeReminder === 'function') {
-      window.updateModeReminder();
-    }
+        // Attach interaction listeners to dropdown
+        function bindInteractionListeners() {
+          // Mouse enter / touch start / scroll wheel – stop auto‑scroll
+          dropdown.addEventListener('mouseenter', handleUserInteraction);
+          dropdown.addEventListener('touchstart', handleUserInteraction, { passive: true });
+          dropdown.addEventListener('wheel', handleUserInteraction, { passive: true });
+        }
 
-    // 🔥 ALWAYS switch UI – this hides the travel dashboard when not in travel mode
-    if (typeof window.switchUIMode === 'function') {
-      window.switchUIMode(model);
-    }
+        // ----- Minimize / Restore logic with icon toggle -----
+        function toggleMinimize() {
+          btn.classList.toggle('minimized');
+          const isMinimized = btn.classList.contains('minimized');
+          
+          if (minimizeIcon) {
+            minimizeIcon.className = isMinimized ? 'fas fa-chevron-down' : 'fas fa-chevron-up';
+            minimizeToggle.title = isMinimized ? 'Restore full button' : 'Minimize to icon only';
+          }
+          
+          if (isMinimized) {
+            dropdown.classList.remove('show');
+            btn.classList.remove('active');
+            stopAutoScroll();
+            userInteracted = false; // reset for next open
+          }
+        }
+        
+        minimizeToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleMinimize();
+        });
 
-    // 🔥 For non-travel modes, also create a new chat (old behaviour)
-    if (model !== 'travel-concierge') {
-      if (typeof window.xroga?.createNewChat === 'function') {
-        window.xroga.createNewChat();
-      }
-    }
+        // Helper: scroll selected option into view (called when dropdown opens)
+        function scrollToSelected() {
+          const selectedOpt = document.querySelector('.model-option.selected');
+          if (selectedOpt) {
+            selectedOpt.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          }
+        }
 
-    dropdown.classList.remove('show');
-    btn.classList.remove('active');
-  });
-});
+        // ----- Dropdown toggle (respect minimize state) -----
+        btn.addEventListener('click', (e) => {
+          if (btn.classList.contains('minimized')) {
+            e.stopPropagation();
+            toggleMinimize();
+            return;
+          }
+          e.stopPropagation();
+          const willShow = !dropdown.classList.contains('show');
+          dropdown.classList.toggle('show');
+          btn.classList.toggle('active');
+          
+          if (willShow) {
+            // Reset interaction flag and scroll to selected
+            userInteracted = false;
+            scrollToSelected();
+            // Schedule auto‑scroll after 5s
+            scheduleAutoScroll();
+          } else {
+            // Dropdown closed – stop everything and reset flag
+            stopAutoScroll();
+            userInteracted = false;
+          }
+        });
 
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('show');
+            btn.classList.remove('active');
+            stopAutoScroll();
+            userInteracted = false;
+          }
+        });
 
-    // ----- DRAG & DROP (unchanged) -----
-    let isDragging = false;
-    let startX = 0, startY = 0;
-    let currentLeft = 0, currentTop = 0;
+        // ----- Model selection (with icon color & auto scroll) -----
+        options.forEach(opt => {
+          opt.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            // User interaction: stop auto‑scroll
+            handleUserInteraction();
+            
+            options.forEach(o => o.classList.remove('selected'));
+            opt.classList.add('selected');
 
-    function getInitialPosition() {
-      const rect = wrapper.getBoundingClientRect();
-      currentLeft = rect.left;
-      currentTop = rect.top;
-      wrapper.style.left = currentLeft + 'px';
-      wrapper.style.top = currentTop + 'px';
-      wrapper.style.transform = 'none';
-    }
+            const model = opt.dataset.model;
+            const iconClass = opt.dataset.icon;
+            const modelName = opt.dataset.name;
 
-    getInitialPosition();
+            btnIcon.className = `btn-icon fas ${iconClass}`;
+            btnName.textContent = modelName;
+            
+            // Set color based on model
+            if (opt.classList.contains('code-expert')) btnIcon.style.color = '#3b82f6';
+            else if (opt.classList.contains('lightening')) btnIcon.style.color = '#fbbf24';
+            else if (opt.classList.contains('deep-thought')) btnIcon.style.color = '#34d399';
+            else if (opt.classList.contains('travel-concierge')) btnIcon.style.color = '#10b981';
+            else if (opt.classList.contains('muslim-islamic')) btnIcon.style.color = '#d4af37';
+            else if (opt.classList.contains('shop-confidence')) btnIcon.style.color = '#22d3ee';
 
-    function clampToViewport() {
-      const rect = wrapper.getBoundingClientRect();
-      const winW = window.innerWidth;
-      const winH = window.innerHeight;
-      let newLeft = currentLeft;
-      let newTop = currentTop;
+            if (window.xroga && window.xroga.state) {
+              window.xroga.state.currentMode = model;
+              localStorage.setItem('currentMode', model);
+            }
 
-      if (rect.left < 0) newLeft = 0;
-      if (rect.right > winW) newLeft = winW - rect.width;
-      if (rect.top < 0) newTop = 0;
-      if (rect.bottom > winH) newTop = winH - rect.height;
+            if (window.xroga && typeof window.xroga.expandSectionForMode === 'function') {
+              window.xroga.expandSectionForMode(model);
+            }
 
-      if (newLeft !== currentLeft || newTop !== currentTop) {
-        currentLeft = newLeft;
-        currentTop = newTop;
-        wrapper.style.left = currentLeft + 'px';
-        wrapper.style.top = currentTop + 'px';
-      }
-    }
+            if (typeof window.updateModeReminder === 'function') {
+              window.updateModeReminder();
+            }
 
-    dragHandle.addEventListener('mousedown', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      isDragging = true;
+            if (typeof window.switchUIMode === 'function') {
+              window.switchUIMode(model);
+            }
 
-      const rect = wrapper.getBoundingClientRect();
-      currentLeft = rect.left;
-      currentTop = rect.top;
+            if (model !== 'travel-concierge') {
+              if (typeof window.xroga?.createNewChat === 'function') {
+                window.xroga.createNewChat();
+              }
+            }
 
-      startX = e.clientX - currentLeft;
-      startY = e.clientY - currentTop;
+            dropdown.classList.remove('show');
+            btn.classList.remove('active');
+            stopAutoScroll();
+            userInteracted = false; // ready for next open
+          });
+        });
 
-      wrapper.style.transform = 'none';
-      wrapper.style.left = currentLeft + 'px';
-      wrapper.style.top = currentTop + 'px';
+        // ==========================================================
+        //  DRAG & DROP – FULL TOUCH + MOUSE SUPPORT
+        // ==========================================================
+        let isDragging = false;
+        let startX = 0, startY = 0;
+        let currentLeft = 0, currentTop = 0;
 
-      wrapper.classList.add('dragging-active');
-      document.body.style.userSelect = 'none';
-    });
+        function getInitialPosition() {
+          const rect = wrapper.getBoundingClientRect();
+          currentLeft = rect.left;
+          currentTop = rect.top;
+          wrapper.style.left = currentLeft + 'px';
+          wrapper.style.top = currentTop + 'px';
+          wrapper.style.transform = 'none';
+        }
 
-    window.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      e.preventDefault();
+        function clampToViewport() {
+          const rect = wrapper.getBoundingClientRect();
+          const winW = window.innerWidth;
+          const winH = window.innerHeight;
+          let newLeft = currentLeft;
+          let newTop = currentTop;
 
-      let newLeft = e.clientX - startX;
-      let newTop = e.clientY - startY;
+          if (rect.left < 0) newLeft = 0;
+          if (rect.right > winW) newLeft = winW - rect.width;
+          if (rect.top < 0) newTop = 0;
+          if (rect.bottom > winH) newTop = winH - rect.height;
 
-      const wrapperRect = wrapper.getBoundingClientRect();
-      const winW = window.innerWidth;
-      const winH = window.innerHeight;
-      const width = wrapperRect.width;
-      const height = wrapperRect.height;
+          if (newLeft !== currentLeft || newTop !== currentTop) {
+            currentLeft = newLeft;
+            currentTop = newTop;
+            wrapper.style.left = currentLeft + 'px';
+            wrapper.style.top = currentTop + 'px';
+          }
+        }
 
-      newLeft = Math.min(Math.max(newLeft, 0), winW - width);
-      newTop = Math.min(Math.max(newTop, 0), winH - height);
+        function onDragStart(e) {
+          if (e.type === 'touchstart') e.preventDefault();
+          e.stopPropagation();
 
-      currentLeft = newLeft;
-      currentTop = newTop;
-      wrapper.style.left = currentLeft + 'px';
-      wrapper.style.top = currentTop + 'px';
-    });
+          const clientX = e.clientX ?? e.touches[0].clientX;
+          const clientY = e.clientY ?? e.touches[0].clientY;
 
-    window.addEventListener('mouseup', () => {
-      if (isDragging) {
-        isDragging = false;
-        wrapper.classList.remove('dragging-active');
-        document.body.style.userSelect = '';
+          isDragging = true;
+
+          const rect = wrapper.getBoundingClientRect();
+          currentLeft = rect.left;
+          currentTop = rect.top;
+
+          startX = clientX - currentLeft;
+          startY = clientY - currentTop;
+
+          wrapper.style.transform = 'none';
+          wrapper.style.left = currentLeft + 'px';
+          wrapper.style.top = currentTop + 'px';
+
+          wrapper.classList.add('dragging-active');
+          document.body.style.userSelect = 'none';
+        }
+
+        function onDragMove(e) {
+          if (!isDragging) return;
+          if (e.type === 'touchmove') e.preventDefault();
+
+          const clientX = e.clientX ?? e.touches[0].clientX;
+          const clientY = e.clientY ?? e.touches[0].clientY;
+
+          let newLeft = clientX - startX;
+          let newTop = clientY - startY;
+
+          const wrapperRect = wrapper.getBoundingClientRect();
+          const winW = window.innerWidth;
+          const winH = window.innerHeight;
+          const width = wrapperRect.width;
+          const height = wrapperRect.height;
+
+          newLeft = Math.min(Math.max(newLeft, 0), winW - width);
+          newTop = Math.min(Math.max(newTop, 0), winH - height);
+
+          currentLeft = newLeft;
+          currentTop = newTop;
+          wrapper.style.left = currentLeft + 'px';
+          wrapper.style.top = currentTop + 'px';
+        }
+
+        function onDragEnd(e) {
+          if (!isDragging) return;
+          isDragging = false;
+          wrapper.classList.remove('dragging-active');
+          document.body.style.userSelect = '';
+          clampToViewport();
+        }
+
+        dragHandle.addEventListener('mousedown', onDragStart);
+        window.addEventListener('mousemove', onDragMove);
+        window.addEventListener('mouseup', onDragEnd);
+
+        dragHandle.addEventListener('touchstart', onDragStart, { passive: false });
+        window.addEventListener('touchmove', onDragMove, { passive: false });
+        window.addEventListener('touchend', onDragEnd);
+        window.addEventListener('touchcancel', onDragEnd);
+
+        dragHandle.addEventListener('dragstart', (e) => e.preventDefault());
+
+        getInitialPosition();
         clampToViewport();
-      }
-    });
 
-    window.addEventListener('resize', () => {
-      if (!isDragging) {
-        clampToViewport();
-      }
-    });
+        window.addEventListener('resize', () => {
+          if (!isDragging) clampToViewport();
+        });
 
-    clampToViewport();
-    dragHandle.addEventListener('dragstart', (e) => e.preventDefault());
-  })();
-</script>
+        // Ensure initial icon state matches expanded (chevron-up)
+        if (minimizeIcon) {
+          minimizeIcon.className = 'fas fa-chevron-up';
+        }
+
+        // Bind interaction listeners for auto‑scroll stop
+        bindInteractionListeners();
+      })();
+    </script>
   </section>
 </div>
-
-
-
-
-
-
-
